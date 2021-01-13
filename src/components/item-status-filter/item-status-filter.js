@@ -11,7 +11,7 @@ export default class ItemStatusFilter extends Component {
   ];
   
   render(){
-    const { onFilterDone, onFilterActive, onFilterAll, filter, onFilterChange } = this.props;
+    const { filter, onFilterChange } = this.props;
 
     const buttons = this.buttons.map(({name, label}) => {
       const isActive = filter === name;
@@ -28,12 +28,6 @@ export default class ItemStatusFilter extends Component {
     return (
       <div className="btn-group">
         {buttons}
-        {/* <button type="button"
-                className="btn btn-info" onClick={onFilterAll}>All</button>
-        <button type="button"
-                className="btn btn-outline-secondary" onClick={onFilterActive}>Active</button>
-        <button type="button"
-                className="btn btn-outline-secondary" onClick={onFilterDone}>Done</button> */}
       </div>
     );
   }

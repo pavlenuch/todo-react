@@ -15,9 +15,6 @@ export default class App extends Component {
             this.createTodoItem('Drink Coffee'),
             this.createTodoItem('Make Awesome App'),
             this.createTodoItem('Have a lunch'),
-            // { label: 'Drink Coffee', important: false, id: 1 },
-            // { label: 'Make Awesome App', important: true, id: 2 },
-            // { label: 'Have a lunch', important: false, id: 3 },
         ],
         term: '',
         filter: 'all'
@@ -35,12 +32,6 @@ export default class App extends Component {
     deleteItem = (id) => {
         this.setState(( { todoData } )=>{
             const idx = todoData.findIndex( (el) => el.id === id );
-            // todoData.splice(idx, 1); такой метод плох тем, что существующий массив менять плохо. нужно создавать новый.
-
-            // const before = todoData.slice(0, idx);
-            // const after = todoData.slice(idx + 1);
-            // const newArray = [...before, ...after];
-            // тоже самое но коротко
             const newArray = [...todoData.slice(0, idx), ...todoData.slice(idx + 1)];
 
             return {
@@ -130,21 +121,7 @@ export default class App extends Component {
                 todoData: arrDone
             }
         });
-    }
-
-    // моя функция поиска
-    // searchItem = (text) => {
-    //     this.setState(({ todoData }) => {
-    //         let arrSearch = todoData.map((item) => {
-    //             if(item.label.indexOf(text) > -1){
-    //                 return this.getElementForSort(item, true);
-    //             } else {return this.getElementForSort(item, false)}
-    //         });
-    //         return {
-    //             todoData: arrSearch
-    //         }
-    //     });
-    // };
+    };
  
     // моя функция поиска
     search = (items, term) => {
@@ -176,11 +153,6 @@ export default class App extends Component {
     }
 
     render() {
-        // const todoData = [
-        //     { label: 'Drink Coffee', important: false, id: 1 },
-        //     { label: 'Make Awesome App', important: true, id: 2 },
-        //     { label: 'Have a lunch', important: false, id: 3 },
-        // ]
         const { todoData, term, filter } = this.state;
 
         const visibleItems = this.filter(this.search(todoData, term), filter);
@@ -195,9 +167,6 @@ export default class App extends Component {
                 <div className="top-panel d-flex">
                     <SearchPanel todos={todoData} searchItem={this.searchItem} onSearchChange={this.onSearchChange}/>
                     <ItemStatusFilter 
-                    // onFilterDone={this.sortDone} 
-                    // onFilterActive={this.sortActive} 
-                    // onFilterAll={this.sortAll} 
                     filter={filter} 
                     onFilterChange={this.onFilterChange}/>
                 </div>
